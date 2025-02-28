@@ -63,9 +63,7 @@ export default function HomePage() {
                     </Link>
                 </section>
             </div>
-            <div>
-                <img src=""/>;
-            </div>
+           
         </div>
         </>
     );
