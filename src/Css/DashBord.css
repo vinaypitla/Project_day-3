@@ -1,0 +1,57 @@
+.vehicle-scroll-container {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    padding: 10px 0;
+}
+
+.vehicle-scroll {
+    display: flex;
+    width: max-content;
+    animation: scroll-left 50s linear infinite;
+}
+
+/* Duplicate the content for seamless scrolling */
+.vehicle-scroll::after {
+    content: "";
+    display: flex;
+    width: max-content;
+}
+
+/* Vehicle Card Styling */
+.vehicle-card {
+    border: 1px solid #ccc;
+    padding: 19px;
+    border-radius: 8px;
+    width: 250px;
+    text-align: center;
+    flex-shrink: 0;
+    margin-right: 30px;
+    background: white;
+    box-shadow: 0px 4px 6px rgba(12, 12, 51, 0.1);
+}
+
+/* Improved scrolling animation */
+@keyframes scroll-left {
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); }
+}
+
+/* Text Styling */
+h1 {
+    color: #ffffff;
+    text-shadow: 4px 4px 10px rgba(173, 70, 70, 0.8);
+}
+
+p {
+    color: #ffffff;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+/* Optional: Add a semi-transparent background for better text readability */
+.video-text {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px 20px;
+    border-radius: 5px;
+}

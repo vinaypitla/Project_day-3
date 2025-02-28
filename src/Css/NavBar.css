@@ -1,0 +1,57 @@
+/* Navbar Background */
+.main-navbar {
+    background-color: #e1e6eb;
+    padding: 15px 20px;
+}
+
+/* Override Bootstrap */
+.main-navbar.navbar-light {
+    background-color: #007bff !important;
+}
+
+/* Navbar Links */
+.main-navbar .navbar-nav .nav-item .nav-link {
+    color: rgb(20, 17, 17) !important;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 15px;
+    transition: 0.3s ease-in-out;
+}
+
+/* Hover Effect */
+.main-navbar .navbar-nav .nav-item .nav-link:hover {
+    background-color: rgba(14, 12, 12, 0.2);
+    border-radius: 5px;
+}
+
+/* Active Link */
+.main-navbar .navbar-nav .nav-item.active .nav-link {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/* Profile Section */
+.main-navbar .profile-nav {
+    margin-left: auto;
+}
+
+.main-navbar .profile-nav .nav-item .nav-link {
+    display: flex;
+    align-items: center;
+    color: rgb(15, 12, 12) !important;
+}
+
+/* Profile Image */
+.main-navbar .profile-nav img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid white;
+    margin-left: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Profile Image Hover Effect */
+.main-navbar .profile-nav img:hover {
+    transform: scale(1.1);
+}

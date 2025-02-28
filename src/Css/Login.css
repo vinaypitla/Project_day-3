@@ -1,0 +1,101 @@
+/* Apply background only to login page */
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('/assets/audi.jpg') no-repeat center center/cover;
+}
+.login-box
+h2{
+    color: #f7f2f2;
+}
+.signup-box{
+    h2{
+        color: #ffffff;
+    }
+}
+
+.login-box label {
+    color: rgb(255, 255, 255); /* Change to any color */
+}
+
+
+/* Apply background only to signup page */
+.signup-page {
+    display: flex;  
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('/assets/audi.jpg') no-repeat center center/cover;
+}
+
+/* Login & Signup Box Styling */
+/* Transparent Box for Login & Signup */
+.login-box, .signup-box {
+    width: 400px;
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.9); /* Ensures transparency */
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    text-align: center;
+}
+
+
+/* Input Fields */
+.inputBox {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.inputBox input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-bottom: 1px solid white;
+    background: transparent;
+    outline: none;
+}
+
+/* Floating Labels */
+.inputBox label {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    font-size: 16px;
+    color: white;
+    transition: 0.3s;
+}
+
+/* Move label on focus */
+.inputBox input:focus ~ label,
+.inputBox input:valid ~ label {
+    top: -10px;
+    font-size: 12px;
+    color: #03A9F4;
+}
+
+/* Submit Button */
+input[type="submit"] {
+    background: #03A9F4;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+input[type="submit"]:hover {
+    background: rgba(3, 169, 244, 0.7);
+}
+
+/* Responsive design */
+@media (max-width: 720px) {
+    .login-box, .signup-box {
+        width: 80%;
+    }
+}
