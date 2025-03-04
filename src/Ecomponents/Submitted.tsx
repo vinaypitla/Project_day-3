@@ -11,7 +11,7 @@ const TestDriveConfirmation = () => {
             <div className="confirmation-container">
                 <h2>Test Drive Request Submitted!</h2>
                 <p>Thank you for requesting a test drive. Our team will contact you soon to schedule your appointment.</p>
-                <button onClick={() => navigate("/")} className="btn btn-primary">
+                <button onClick={() => navigate("/homepage")} className="btn btn-primary">
                     Return to Home
                 </button>
             </div>

@@ -1,93 +1,129 @@
-import NavBar from "./NavBar";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Dropdown from 'react-bootstrap/Dropdown';
-import 'bootstrap/dist/css/bootstrap.min.css'; 
+import axios from "axios";
+import Dropdown from "react-bootstrap/Dropdown";
+import "bootstrap/dist/css/bootstrap.min.css";
 import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css"; // Import date picker styles
+import "react-datepicker/dist/react-datepicker.css";
+import NavBar from "./NavBar";
+import "../Css/TestDrive.css"
 
-export default function AddStudent() {
+export default function BookTestDrive() {
   const navigate = useNavigate();
 
-  const [name, setName] = useState("");
+  const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [model, setModel] = useState("Select the car to drive");
-  const [date, setDate] = useState(null); // Default value should be `null` for DatePicker
+  const [carModel, setCarModel] = useState("Select the car to drive");
+  const [preferredDate, setPreferredDate] = useState<Date | null>(null);
 
-  const saveStu = (e: { preventDefault: () => void; }) => {
+
+  const availableCars = ["Tesla Model 3", "BMW X5", "Audi A4", "Mercedes C-Class"];
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Submit button clicked!!!!");
-    console.log("Name --->", name);
-    console.log("Phone --->", phone);
-    console.log("Email --->", email);
-    console.log("Selected Car Model --->", model);
-    console.log("Selected Date --->", date);
 
-    const Customer = { name, phone, email, model, date };
-    console.log("Customer Data:", Customer);
+    if (carModel === "Select the car to drive") {
+      alert("Please select a car model.");
+      return;
+    }
 
-    // Navigate to another page after submission
-    navigate("/submitted");
+    const bookingData = {
+      fullName,
+      phone,
+      email,
+      carModel,
+      preferredDate,
+    };
+
+    try {
+      const response = await axios.post("http://localhost:8080/testdrive/book", bookingData);
+      console.log("Booking successful:", response.data);
+      alert("Test drive booked successfully!");
+      navigate("/submitted"); // Redirect after submission
+    } catch (error) {
+      console.error("Error booking test drive:", error);
+      alert("Failed to book test drive. Please try again.");
+    }
   };
 
   return (
     <div>
       <NavBar />
-      <form onSubmit={saveStu} className="stu-add-mar">
-        <div className="form-group">
-          <label>Name</label>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="form-control"
-            placeholder="Enter Name"
-            required
-          />
-        </div>
+      <div className="container mt-5">
+        <h2>Book a Test Drive</h2>
+        <form onSubmit={handleSubmit} className="p-4 border rounded shadow">
+          <div className="form-group">
+            <label>Full Name</label>
+            <input
+              type="text"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+              className="form-control"
+              placeholder="Enter your full name"
+              required
+            />
+          </div>
 
-        <div className="form-group">
-          <label>Phone no</label>
-          <input
-            type="tel"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-            className="form-control"
-            placeholder="Enter Phone Number"
-            required
-          />
-        </div>
+          <div className="form-group">
+            <label>Phone Number</label>
+            <input
+              type="tel"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              className="form-control"
+              placeholder="Enter phone number"
+              required
+            />
+          </div>
 
-        <div className="form-group">
-          <label>Email</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="form-control"
-            placeholder="Email"
-              
-            required
-          />
-        </div>
+          <div className="form-group">
+            <label>Email</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="form-control"
+              placeholder="Enter email"
+              required
+            />
+          </div>
 
-        {/* Car Model Dropdown */}
-        <div className="form-group mt-3">
-          
-        </div>
+          {/* Car Model Dropdown */}
+          <div className="form-group">
+            <label></label>
+            <Dropdown>
+              <Dropdown.Toggle variant="secondary">
+                {carModel}
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                {availableCars.map((car, index) => (
+                  <Dropdown.Item key={index} onClick={() => setCarModel(car)}>
+                    {car}
+                  </Dropdown.Item>
+                ))}
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
 
-        {/* Date Picker */}
-        <div className="form-group mt-3">
-          
-         
-        </div>
+          {/* Date Picker */}
+          <div className="form-group mt-3">
+            <label></label>
+            <DatePicker
+              selected={preferredDate}
+              onChange={(date) => setPreferredDate(date)}
+              className="form-control"
+              minDate={new Date()} // Prevent past dates
+              placeholderText="Select a date"
+              required
+            />
+          </div>
 
-        <br />
-        <button type="submit" className="btn btn-primary">
-          Submit
-        </button>
-      </form>
+          <button type="submit" className="btn btn-primary mt-4">
+            Book Test Drive
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

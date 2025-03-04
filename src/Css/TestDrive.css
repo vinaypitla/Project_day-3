@@ -1,0 +1,75 @@
+/* Apply styles to the form container */
+.test-drive-container {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(45, 29, 104, 0.1);
+    text-align: center;
+}
+
+/* Form Header */
+.test-drive-container h2 {
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.test-drive-container {
+    background: white !important;
+    color: black !important;
+}
+
+/* Label Styles */
+.test-drive-container label {
+    color: #ccc;
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+/* Input Fields */
+.test-drive-container input,
+.test-drive-container select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Date Picker Style */
+.test-drive-container .react-datepicker-wrapper {
+    width: 100%;
+}
+
+/* Submit Button */
+.test-drive-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.test-drive-container button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .test-drive-container {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .test-drive-container button {
+        font-size: 16px;
+    }
+}

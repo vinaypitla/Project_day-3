@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "./Components/HomePage";
 import Login from "./Components/Login";
-import Vahicle from "./Components/Vahicle";
+import Vahicle from "./Components/Vehicle";
 import Admin from "./Components/Admin";
 import Catalog from "./Components/Catalog";
 import Payment from "./Components/Payment";
@@ -13,6 +13,7 @@ import "../src/App.css"
 import Submitted from "./Ecomponents/Submitted";
 import LoginPage from "./Components/Login";
 import SingIn from "./Components/SingIn";
+import ProfilePage from "./Components/profile";
 
 
 export default function App() {
@@ -22,7 +23,7 @@ export default function App() {
         <Routes>
         <Route path="/" element={<LoginPage/>} />
         <Route path="/sign" element={<SingIn/>} />
-
+        <Route path="/profile" element={<ProfilePage/>} />
           <Route path="/homepage" element={<HomePage/>} />
           <Route path="/Login" element={<Login />} />
           <Route path="/Vahicle" element={<Vahicle/>} />

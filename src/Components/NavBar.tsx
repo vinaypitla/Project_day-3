@@ -18,7 +18,7 @@ export default function NavBar() {
                 {/* Left-aligned items */}
                 <ul className="navbar-nav">
                     <li className="nav-item active">
-                        <a className="nav-link" href="/"><b>Home</b></a>
+                        <a className="nav-link" href="/homepage"><b>Home</b></a>
                     </li>
                     <li className="nav-item">
                         <a className="nav-link" href="/catalog">Catalog</a>

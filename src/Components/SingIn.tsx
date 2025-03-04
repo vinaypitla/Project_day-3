@@ -4,24 +4,31 @@ import { useNavigate } from "react-router-dom";
 import "../Css/Login.css";
 
 export default function SignUpPage() {
-    const [username, setUsername] = useState("");
-    const [fullName, setFullName] = useState(""); // Added full name
-    const [email, setEmail] = useState("");
-    const [phone, setPhone] = useState(""); // Added phone number
-    const [password, setPassword] = useState("");
+    const [formData, setFormData] = useState({
+        username: "",
+        fullName: "",
+        email: "",
+        mobileNo: "", // Changed from phone to mobileNo
+        password: "",
+    });
+
     const navigate = useNavigate();
 
+    // Handle input changes
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    // Handle form submission
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log("Registering user:", { username, fullName, email, phone, password });
+
+        // Debugging: Log form data before sending the request
+        console.log("Registering user:", formData);
 
         try {
-            const response = await axios.post("http://localhost:8080/user/register", {
-                username,
-                fullName, // Sending full name
-                email,
-                phone, // Sending phone number
-                password
+            const response = await axios.post("http://localhost:8080/user/register", formData, {
+                headers: { "Content-Type": "application/json" },
             });
 
             console.log("Response:", response.data);
@@ -38,51 +45,61 @@ export default function SignUpPage() {
             <div className="signup-box">
                 <h2>Sign Up</h2>
                 <form onSubmit={handleSubmit}>
+                    {/* Username Field */}
                     <div className="inputBox">
                         <input 
                             type="text" 
-                            value={username} 
-                            onChange={(e) => setUsername(e.target.value)} 
+                            name="username" 
+                            value={formData.username} 
+                            onChange={handleChange} 
                             required 
                         />
                         <label>Username</label>
                     </div>
-                    
+
+                    {/* Full Name Field */}
                     <div className="inputBox">
                         <input 
                             type="text" 
-                            value={fullName} 
-                            onChange={(e) => setFullName(e.target.value)} 
+                            name="fullName" 
+                            value={formData.fullName} 
+                            onChange={handleChange} 
                             required 
                         />
                         <label>Full Name</label>
                     </div>
 
+                    {/* Email Field */}
                     <div className="inputBox">
                         <input 
                             type="email" 
-                            value={email} 
-                            onChange={(e) => setEmail(e.target.value)} 
+                            name="email" 
+                            value={formData.email} 
+                            onChange={handleChange} 
                             required 
                         />
                         <label>Email</label>
                     </div>
 
+                    {/* Mobile Number Field (Updated from phone to mobileNo) */}
                     <div className="inputBox">
                         <input 
                             type="tel" 
-                            value={phone} 
-                            onChange={(e) => setPhone(e.target.value)} 
+                            name="mobileNo"  // Ensure the name matches backend
+                            value={formData.mobileNo} 
+                            onChange={handleChange} 
                             required 
                         />
-                        <label>Phone Number</label>
+                        <label>Mobile Number</label>
                     </div>
 
+                    {/* Password Field */}
                     <div className="inputBox">
                         <input 
                             type="password" 
-                            value={password} 
-                            onChange={(e) => setPassword(e.target.value)} 
+                            name="password" 
+                            value={formData.password} 
+                            onChange={handleChange} 
                             required 
                         />
                         <label>Password</label>
